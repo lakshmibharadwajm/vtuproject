@@ -9,7 +9,13 @@ The main objective of this project is to provide showlight on these vulnurebalit
 is nightmare. Whereas ICMP packets are always allowed beyond NAT and Firewall for checking UPHOST status of the server, also commonly known as PINGING. By crafting custom ping packets or ICMP packets with overriding ICMP fragments with custom data we can make  communcation possible with the attacker and the server.
 here we also showed, how these vulnurablites are can be avoided and patched for a good secured web service.
 ---------------------------------End of ABstract--------------------------------------------------------------
+Intro:
+	Our tool can be used to provide pentesting services for testing WebSecuirty. It compromize the long list of services for both Pentester and Attacker perspective.
+Manually pentesting a webserver is a difficult task for various types of payloads and it is a time consuming. Our tool performs pentesting with various payloads automatically with diffrent attacks to fuzz the server.
+Our tool also provides Shell Sharing Support, File Sharing Support so we can send and recive files, images, movies from device to device.
+It is a single powerfull tool with the capabilities of Network Mapping, Port Scanning, Os FingerPrint Detection, WebFuzzing, SQLInjector and ReverseShell Support using ICMP/TCP/UDP protocols.
 
+--------------------------------------------end of intro----------------------------------------------------------
 Common Attacks and Exploits over a Web Servers
 Information Gatthering:
 	Network Mapping
