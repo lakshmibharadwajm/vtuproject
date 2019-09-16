@@ -1,0 +1,67 @@
+
+-------------------abstRACT----------------
+Cyber security IS the body of technologies, processes, and practices designed to protect networks, devices, programs, and data from attack, damage, or unauthorized access. Cyber security may also be referred to as information technology security.
+Cyber security is important because government, military, corporate, financial, and medical organizations collect, process, and store unprecedented amounts of data on computers and other devices. the practice of testing a computer system, network or web application to find security vulnerabilities that an attacker could exploit  is called Penetration testing, also called pen testing or ethical hacking. 
+Penetration testing can be automated with software applications or performed manually.Either way, the process involves gathering information about the target before the test, identifying possible entry points, attempting to break in -- either virtually or for real -- and reporting back the findings. The most common php webservers are vulnurable for php type juggling vulnurability and SQL Injection.
+
+The main objective of this project is to provide showlight on these vulnurebalities and how these small vulnurabilites can be exploited by the attacker to cause major damage to the servers. In real life scineario, even after exploiting the servers making Command Execution is the challaning task. Here we have desinged next level command Injection by tunnling Shell over ICMP packets. Usually server filters unkown TCP/UDP port openings for security reasons, so making a command execution 
+
+is nightmare. Whereas ICMP packets are always allowed beyond NAT and Firewall for checking UPHOST status of the server, also commonly known as PINGING. By crafting custom ping packets or ICMP packets with overriding ICMP fragments with custom data we can make  communcation possible with the attacker and the server.
+here we also showed, how these vulnurablites are can be avoided and patched for a good secured web service.
+---------------------------------End of ABstract--------------------------------------------------------------
+
+Common Attacks and Exploits over a Web Servers
+Information Gatthering:
+	Network Mapping
+	Port Scanning
+	OS Fingerprint
+	Service Versuion and Name Enumearation
+	Web Fuzzing	 and Directory busting, Spidiering
+Exploting Databse: 
+	1st order SQL Injection Attack
+		explanation with sol
+	2nd order SQl injection
+		explanation with sol
+	Cross Site Scripting (XSS Attack)
+		exploatiion with sol
+	WebFuzzing and BruteForcig
+Shell Level Attacks:
+	Shell Shock and Sleep Attack
+		exploatiion with sol
+	Dirty COW Root Priviilage Escalallation
+		explanation with sol
+	SUID Bits and Wrong Permissions
+	Demons running as root and Cron Jobs
+
+----------------------------------END OF COMMOn Attacks--------------------------------------------------------
+
+Recent Attacks and Explotis realted to this Project:
+IRC Server V.154
+SFTP V 12.45
+PHP CMS Moodle
+PHP CMS Teacher
+GLUE 
+
+---------------------------------------END OF RECENT ATTCK--------------------------------------------------------
+
+Services provided by our Application:
+Recon Scanner, Version and Service Port enumaration
+	explantion
+Automated SQL Injection Testing and Attack
+	explanation
+HTTP/HTTPS Web Fuzzing and Post parameter Fuzzing
+	explanation
+ReverseShell Over TCP/UDP/ICMP Protocols,Facebook
+	explanation
+
+----------------------------------END of Service---------------------------------------------------
+
+Project in Action:
+	couple of FLow Diagrms and Architures, snapshots showing the Attacks and Patches.
+	Linux Commands,windows commands .
+
+---------------------------------END----------------------------------------------------------
+BIBIOLOGRAPHy
+REFERENCES
+
+---------------------------BIG END--------------------
