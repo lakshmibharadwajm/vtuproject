@@ -1,10 +1,14 @@
 #!/bin/bash
 compile(){
-	echo -e "\nComipling and Generating Binaries to /tmp/thor/....\nCleaning up\t\t[PENDING]";
+	export destini=/opt/thor
+	export temp_dir=/tmp/thor
+	echo -e "\nCleaning up\t\t[PENDING]";
 	sleep 2s
-	rm -vrf /tmp/thor/ /opt/thor/
-	mkdir -p /tmp/thor/ /opt/thor/
-	echo -e "Cleaned\t\t\t[OK]\n\nInstalling to /opt/Thor/....\n\n";
+	rm -vrf $temp_dir $destini
+	mkdir -p $temp_dir $destini
+	echo -e "Cleaned\t\t\t[OK]\n\nComipling and Generating Binaries to $temp_dir....";
+	echo -en "gcc -Wall dropper.c -o $temp_dir/syndropper\t\t"|xargs -i% sh -c 'echo %;%';if [ $? -eq 0 ]; then echo -e "\t\t\t[OK]\n"; else echo -e "\t\t\t[FAILED]\n";return;fi
+	echo -e "\n\nInstalling to $destini/....\n\n";
 }
 about(){
 	echo -e "\t\t\t\tAutomated Web Penetration Testing tool\nAttacking tools provided: SqlInjection, ICMP/TCP/UDP Shell, WebFuzzing, Bruteforcing, Directory busting, XSS payloads, Network Scanner, Port Scanner, Service Enumeration, OS finger print Scanner, Low Level TCP/ICMP packet Crafter";
