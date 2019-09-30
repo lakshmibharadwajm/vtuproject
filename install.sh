@@ -7,34 +7,19 @@ compile(){
 	rm -vrf $temp_dir $destini
 	mkdir -p $temp_dir $destini
 	echo -e "Cleaned\t\t\t[OK]\n\nComipling and Generating Binaries to $temp_dir....";
-	echo -en "gcc -Wall dropper.c -o $temp_dir/syndropper\t\t"|xargs -i% sh -c 'echo %;%';if [ $? -eq 0 ]; then echo -e "\t\t\t[OK]\n"; else echo -e "\t\t\t[FAILED]\n";return;fi
+	echo -en "gcc -Wall -D INSTALL_DIR=\\\"$destini/\\\" native/dropper.c -o $temp_dir/syndropper\t\t"|xargs -t -0 -i% sh -c '%';if [ $? -eq 0 ]; then echo -e "\t\t\t[OK]\n"; else echo -e "\t\t\t[FAILED]\n";return;fi
+	echo -en "gcc -Wall -D INSTALL_DIR=\\\"$destini/\\\" native/thor.c -o $temp_dir/thor\t\t"|xargs -t -0 -i% sh -c '%';if [ $? -eq 0 ]; then echo -e "\t\t\t[OK]\n"; else echo -e "\t\t\t[FAILED]\n";return;fi
 	echo -e "\n\nInstalling to $destini/....\n\n";
+	mv  -vt "$destini/" $temp_dir/*
+	cp -fvr ./thor_completion.sh /usr/share/bash-completion/completions/thor
+	source /usr/share/bash-completion/completions/thor
+	cp -fvr ./native/*.sh $destini
+	if [ $? -eq 0 ]; then echo -e "****************************Thor Installed Sucessfully**********************";else echo "Failed to install ";fi
 }
 about(){
 	echo -e "\t\t\t\tAutomated Web Penetration Testing tool\nAttacking tools provided: SqlInjection, ICMP/TCP/UDP Shell, WebFuzzing, Bruteforcing, Directory busting, XSS payloads, Network Scanner, Port Scanner, Service Enumeration, OS finger print Scanner, Low Level TCP/ICMP packet Crafter";
 	echo "Defence tools: Anti-DDos, Anti-BruteForcer, SynDropper, IP Banner";
 	sleep 2s
-}
-
-usage(){
-	echo "General Usage: "
-	echo "thor --service attackType --module moduleName --threads number [--http-request file | --http-headers headers --http-cookies cookies --http-post params] --payload file --paylod file2 --payload file3  --target-host 127.0.0.1 --target-port 4444 --proxy-host 127.0.0.2 --proxy-port 3333  --gui [yes|no]"
-	echo -e "\n\nCommandline parameters summary:"
-	echo -e "\n--Attacktype:\n\t\t--attacktype defence : to make defence attacks\n\t\t--attacktype attack  : to perform web attack\n\t\t--attacktype craft: Used to craft low level IP packets\n\t\t--attacktype listen: Used to setup TCP/UDP/ICMP packets listener"
-	echo -e "--module:\n\t\t--attacktype attack --module sqlinjection : Performs SQLInjection Testing"
-	echo -e "\t\t--attacktype attack --module XSS : Performs XSS payload Attack"
-	echo -e "\t\t--attacktype attack --module webfuzz : Performs webfuzzing Attack"
-	echo -e "\t\t--attacktype attack --module wordlistgenerator : Generates wordslist"
-	echo -e "\t\t--attacktype attack --module ns : Performs Network scan"
-	echo -e "\t\t--attacktype defence --module banip : Performs IP ban"
-	echo -e "\t\t--attacktype defence --module dropsyns : Performs overloaded syn dropper,antiddos,antibruteforcer"
-	echo -e "\t\t--attacktype craft --module  tcp: Creates new low level tcp packet"
-	echo -e "\t\t--attacktype craft --module icmp : creates new lew level icmp packet"
-	echo -e "\t\t--attacktype listen --module  tcp: Creates tcp server"
-	echo -e "\t\t--attacktype listen --module  http: Creates simple http web server"
-	echo -e "\t\t--attacktype listen --module  udp: listens to udp packets"
-	echo -e "\t\t--attacktype listen --module  icmp: listens to icmp packets"
-	echo -e "--threads: \n\t\t--threads 5: Number of threads to spit the job to perform the job, default 5 threads"
 }
 #-----------MAIN-------------
 echo "Thor 1.0" 
