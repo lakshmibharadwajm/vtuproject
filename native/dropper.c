@@ -25,6 +25,8 @@
 #define buffersize 1024
 #define DATA "awcator"
 
+int thrshhold=100; //100 syns/perminute
+
 unsigned int showPackets=0;
 unsigned short hasEathernetHeader=0;
 unsigned int sq=0,asq=0;
@@ -75,8 +77,8 @@ void fakeit(){
 
 	//Setup
 
-	char *srcIP = "192.168.42.11";
-	char *dstIP = "192.168.42.11";
+	char *srcIP = "127.0.0.1";
+	char *dstIP = "127.0.0.1";
 	/*
 	   char *srcIP = "192.168.1.100";
 	   char *dstIP = "192.168.1.100";
@@ -301,9 +303,11 @@ int main(int argc,char **argv){
 		memset(buffer, 0x00, buffersize);
 		nbytes = read(sockfd, buffer, buffersize - 1);
 		if (nbytes > 0) {
+			thrshhold--;
+			if(thrshhold<=0){thrshhold=-1;
 			//ethernet_header(buffer,buffersize);
 			//ip_header(buffer,buffersize);
-			tcp_packet(buffer,buffersize);
+			tcp_packet(buffer,buffersize);}
 		}
 	}
 	return 0;

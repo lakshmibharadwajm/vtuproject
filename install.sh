@@ -1,18 +1,31 @@
 #!/bin/bash
 compile(){
-	export destini=/opt/thor
-	export temp_dir=/tmp/thor
+	export destini=/opt/thor/
+	export temp_dir=/tmp/thor/
 	echo -e "\nCleaning up\t\t[PENDING]";
 	sleep 2s
 	rm -vrf $temp_dir $destini
-	mkdir -p $temp_dir $destini
+	mkdir -p $temp_dir $destini "$destini/lib/"
+	
+	cp -nvr lib/* "$destini/lib/";
 	echo -e "Cleaned\t\t\t[OK]\n\nComipling and Generating Binaries to $temp_dir....";
 	echo -en "gcc -Wall -D INSTALL_DIR=\\\"$destini/\\\" native/dropper.c -o $temp_dir/syndropper\t\t"|xargs -t -0 -i% sh -c '%';if [ $? -eq 0 ]; then echo -e "\t\t\t[OK]\n"; else echo -e "\t\t\t[FAILED]\n";return;fi
 	echo -en "gcc -Wall -D INSTALL_DIR=\\\"$destini/\\\" native/thor.c -o $temp_dir/thor\t\t"|xargs -t -0 -i% sh -c '%';if [ $? -eq 0 ]; then echo -e "\t\t\t[OK]\n"; else echo -e "\t\t\t[FAILED]\n";return;fi
+	echo -en "gcc -Wall -D INSTALL_DIR=\\\"$destini/\\\" native/icmp_attacker.c -o $temp_dir/icmp_listener\t\t"|xargs -t -0 -i% sh -c '%';if [ $? -eq 0 ]; then echo -e "\t\t\t[OK]\n"; else echo -e "\t\t\t[FAILED]\n";return;fi
 	echo -e "\n\nInstalling to $destini/....\n\n";
 	mv  -vt "$destini/" $temp_dir/*
+	
+	cp -fvr ./native/icmpsh.exe "$destini/"
 	cp -fvr ./thor_completion.sh /usr/share/bash-completion/completions/thor
 	source /usr/share/bash-completion/completions/thor
+	cd src/
+	echo -e "\n\n\n Building java binaries. ";
+	export CLASSPATH="$CLASSPATH:../lib/*:."
+	echo -en "javac StreamTrasferer.java -d $destini/"|xargs -t -0 -i% sh -c '%';if [ $? -eq 0 ]; then echo -e "\t\t\t[OK]\n"; else echo -e "\t\t\t[FAILED]\n";return;fi
+	echo -en "javac tcp_shell.java -d $destini/"|xargs -t -0 -i% sh -c '%';if [ $? -eq 0 ]; then echo -e "\t\t\t[OK]\n"; else echo -e "\t\t\t[FAILED]\n";return;fi	
+	echo -en "javac tcp_listener.java -d $destini/"|xargs -t -0 -i% sh -c '%';if [ $? -eq 0 ]; then echo -e "\t\t\t[OK]\n"; else echo -e "\t\t\t[FAILED]\n";return;fi	
+	echo -e "\n\n\n Built Java binaries. ";
+	cd ..
 	cp -fvr ./native/*.sh $destini
 	if [ $? -eq 0 ]; then echo -e "****************************Thor Installed Sucessfully**********************";else echo "Failed to install ";fi
 }

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="thor:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/thor_jar</output-path>
+    <root id="archive" name="thor.jar">
+      <element id="module-output" name="thor" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,11 @@
+
+
+
+ sudo thor --service attack --module webfuzz -c -w /home/Awcator/FinalyearProj/words.txt -w /home/Awcator/FinalyearProj/words.txt -d "'user=FUZZ&pass=FUZ2Z&submit=Log-In'" -b "'uname=Dev; PHPSESSID=69qp7429rbebtfnns1cljhhoem'" http://awcator/Errors/rlogin.php
+
+
+sudo thor --service attack --module webfuzz --hs 404 -c -w /usr/share/dirbuster/directory-list-lowercase-2.3-medium.txt http://awcator/TEMP/FUZZ
+
+
+//Disable ICMP replays:
+sysctl -w net.ipv4.icmp_echo_ignore_all=1

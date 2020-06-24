@@ -47,7 +47,7 @@ _foo() {
     		else opts="SOMETHING";
     		fi;
     		COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
-    		defaultopts="--verbrose_level"
+    		defaultopts="--verbrose_level --port"
     		return
     		;;
     	esac

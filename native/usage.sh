@@ -1,6 +1,6 @@
 #!/bin/bash
 usage(){
-        echo "General Usage: "
+        echo -e "\n by, CSE, GECH\n\n General Usage: "
         echo "thor --service attackType --module moduleName --threads number [--http-request file | --http-headers headers --http-cookies cookies --http-post params] --payload file --paylod file2 --payload file3  --target-host 127.0.0.1 --target-port 4444 --proxy-host 127.0.0.2 --proxy-port 3333  --gui [yes|no] --verbrose_level [1|2]"
         echo -e "\n\nCommandline parameters summary:"
         echo -e "\n--service:\n\t\t--service defence : to make defence attacks\n\t\t--service attack  : to perform web attack\n\t\t--service craft: Used to craft low level IP packets\n\t\t--service listen: Used to setup TCP/UDP/ICMP packets listener"
