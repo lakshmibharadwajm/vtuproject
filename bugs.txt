@@ -1,3 +1,0 @@
-We'll write the bugs and necessary changes here, to keep a reminder.
-1. Need to change Title of the topic, it is PHP juggling not php dangling. 
-2. Need to create Intro in synopsis
